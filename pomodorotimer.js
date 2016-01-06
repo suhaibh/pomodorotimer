@@ -24,9 +24,19 @@ var decreaseTimerButton = document.getElementById("decreaseTimerButton");
 decreaseTimerButton.onclick = decreaseTimer;
 
 function startTimer(){
-	startTimeSeconds--;
+	if (startTimeSeconds <= 0){
+		startTimeSeconds = "59";
+	}
+	else {
+		if (startTimeSeconds.toString() <= 10){
+				startTimeSeconds--;
+				startTimeSeconds = "0" + startTimeSeconds;}
+		else {
+			startTimeSeconds--;
+		}
+	}
+	startTimeSeconds = startTimeSeconds.toString();
 	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
-
 }
 
 var startTimerButton = document.getElementById("startTimerButton");
