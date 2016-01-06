@@ -28,14 +28,13 @@ function startTimer(){
 		startTimeSeconds = "59";
 	}
 	else {
-		if (startTimeSeconds.toString() <= 10){
+		if (startTimeSeconds <= 10){
 				startTimeSeconds--;
 				startTimeSeconds = "0" + startTimeSeconds;}
 		else {
 			startTimeSeconds--;
 		}
 	}
-	startTimeSeconds = startTimeSeconds.toString();
 	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
