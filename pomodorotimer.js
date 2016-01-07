@@ -1,20 +1,20 @@
-var startTimeMinutes = 25;
+var startTimeMinutes = 1;
 var startTimeSeconds = "00";
 window.onload = setTimer;
 
 function setTimer(){
-	timer = document.getElementById("timer");
-	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	timerDisplay = document.getElementById("timer");
+	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
 function increaseTimer(){
 	startTimeMinutes++;
-	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
 function decreaseTimer(){
 	startTimeMinutes--;
-	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
 var increaseTimerButton = document.getElementById("increaseTimerButton");
@@ -26,6 +26,13 @@ decreaseTimerButton.onclick = decreaseTimer;
 function startTimer(){
 	if (startTimeSeconds <= 0){
 		startTimeSeconds = "59";
+		if (startTimeMinutes <= 0){
+			startTimeMinutes = 0;
+			clearInterval(timer);
+			breakTimer();
+		}
+		else { startTimeMinutes--;
+		}
 	}
 	else {
 		if (startTimeSeconds <= 10){
@@ -35,12 +42,33 @@ function startTimer(){
 			startTimeSeconds--;
 		}
 	}
-	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
+function breakTimer(){
+	startTimeMinutes = 1;
+	startTimeSeconds = "00";
+	timer;
+	if (startTimeSeconds <= 0){
+		startTimeSeconds = "59";
+		if (startTimeMinutes <= 0){
+			startTimeMinutes = 2;
+			startTimer();
+		}
+	}
+	else {
+		startTimeSeconds--;
+	}
+}
+
+// create another setinterval for break timer called when start timer ends and then when breaktimer ends clear the interval and start the start timer
+
 var startTimerButton = document.getElementById("startTimerButton");
-startTimerButton.onclick = startTimer;
+startTimerButton.onclick = function(){
+	timer = setInterval(startTimer, 1000);
+}
 
-function stopTimer(){
-
+var stopTimerButton = document.getElementById("stopTimerButton");
+stopTimerButton.onclick = function(){
+	clearInterval(timer);
 }
