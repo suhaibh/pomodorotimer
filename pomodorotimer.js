@@ -24,14 +24,16 @@ var decreaseTimerButton = document.getElementById("decreaseTimerButton");
 decreaseTimerButton.onclick = decreaseTimer;
 
 function startTimer(){
+	breakTimerInterval = false;
 	if (startTimeSeconds <= 0){
-		startTimeSeconds = "59";
 		if (startTimeMinutes <= 0){
-			startTimeMinutes = 0;
-			clearInterval(timer);
+			startTimeMinutes = 5;
 			breakTimer();
+			clearInterval(timerInterval);
 		}
-		else { startTimeMinutes--;
+		else { 
+			startTimeSeconds = "59";
+			startTimeMinutes--;
 		}
 	}
 	else {
@@ -45,30 +47,46 @@ function startTimer(){
 	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
+breakTimerInterval = false;
 function breakTimer(){
-	startTimeMinutes = 1;
-	startTimeSeconds = "00";
-	timer;
+	breakTimerInterval = setInterval(startBreakTimer, 1000);
+}
+
+function startBreakTimer(){
+	timerInterval = false;
 	if (startTimeSeconds <= 0){
-		startTimeSeconds = "59";
 		if (startTimeMinutes <= 0){
-			startTimeMinutes = 2;
 			startTimer();
+		}
+		else {
+			startTimeSeconds = "59";
+			startTimeMinutes--;
 		}
 	}
 	else {
 		startTimeSeconds--;
 	}
+	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
 // create another setinterval for break timer called when start timer ends and then when breaktimer ends clear the interval and start the start timer
 
 var startTimerButton = document.getElementById("startTimerButton");
 startTimerButton.onclick = function(){
-	timer = setInterval(startTimer, 1000);
+	if (breakTimerInterval == false){
+		timerInterval = setInterval(startTimer, 1000);	
+	}
+	else {
+		breakTimer();
+	}
 }
 
 var stopTimerButton = document.getElementById("stopTimerButton");
 stopTimerButton.onclick = function(){
-	clearInterval(timer);
+	if (breakTimerInterval == false){
+		clearInterval(timerInterval);	
+	}
+	else { 
+		clearInterval(breakTimerInterval);
+	}
 }
