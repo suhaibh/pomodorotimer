@@ -13,8 +13,10 @@ function increaseTimer(){
 }
 
 function decreaseTimer(){
-	startTimeMinutes--;
-	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	if (startTimeMinutes > 0){
+		startTimeMinutes--;
+		timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;	
+	}
 }
 
 var increaseTimerButton = document.getElementById("increaseTimerButton");
