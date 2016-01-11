@@ -58,7 +58,9 @@ function startBreakTimer(){
 	timerInterval = false;
 	if (startTimeSeconds <= 0){
 		if (startTimeMinutes <= 0){
+			startTimeMinutes = 25;
 			startTimer();
+			clearInterval(breakTimerInterval);
 		}
 		else {
 			startTimeSeconds = "59";
@@ -66,9 +68,16 @@ function startBreakTimer(){
 		}
 	}
 	else {
+		if (startTimeSeconds < 10){
+			startTimeSeconds = "0" + startTimeSeconds;
+		}
 		startTimeSeconds--;
 	}
 	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+}
+
+function startWorkTimer(){
+	timerInterval = setInterval(startTimer, 1000);
 }
 
 // create another setinterval for break timer called when start timer ends and then when breaktimer ends clear the interval and start the start timer
@@ -76,7 +85,7 @@ function startBreakTimer(){
 var startTimerButton = document.getElementById("startTimerButton");
 startTimerButton.onclick = function(){
 	if (breakTimerInterval == false){
-		timerInterval = setInterval(startTimer, 1000);	
+		startWorkTimer();	
 	}
 	else {
 		breakTimer();
