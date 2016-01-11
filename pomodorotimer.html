@@ -4,15 +4,17 @@
 	<title>Pomodoro Clock</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 	
 </head>
 <body>
 	<div class="container">
 		<div class="timerBox jumbotron text-center">
-			<h2 id="timer"></h2>
+			<div class="row">
+				<i class="fa fa-3x fa-plus" id="increaseTimerButton"></i> <h1 id="timer"></h1> 
+			</div>
 			<button class="btn btn-default" id="startTimerButton">Start Timer</button>
 			<button class="btn btn-default" id="stopTimerButton">Stop Timer</button>
-			<button class="btn btn-default" id="increaseTimerButton">Increase Timer</button>
 			<button class="btn btn-default" id="decreaseTimerButton">Decrease Timer</button>
 		</div>
 	</div>
