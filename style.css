@@ -1,8 +1,25 @@
 h1 {
 	display: inline;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
-.fa-plus {
-	padding-right: 15px;
-	padding-bottom: 15px;
+.jumbotron {
+	background: white;
 }
+
+.fa:hover {
+	cursor: pointer;
+	color: #5b5b5b;
+}
+
+.btn {
+	margin-top: 15px;
+}
+
+button {
+	background: none;
+	border: 0;
+	outline: 0;
+}
+
