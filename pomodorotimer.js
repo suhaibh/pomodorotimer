@@ -82,22 +82,26 @@ function startWorkTimer(){
 
 // create another setinterval for break timer called when start timer ends and then when breaktimer ends clear the interval and start the start timer
 
+// see if you can decrease the delay between pressing play and the start of the clock by nesting some if statements
+
 var startTimerButton = document.getElementById("startTimerButton");
 startTimerButton.onclick = function(){
-	if (breakTimerInterval == false){
-		startWorkTimer();	
+	if (breakTimerInterval == false && startTimerButton.className == "fa fa-play fa-lg"){
+		startWorkTimer();
+		startTimerButton.className = "fa fa-pause fa-lg"
 	}
-	else {
-		breakTimer();
+	else if (breakTimerInterval == false && startTimerButton.className == "fa fa-pause fa-lg"){
+		clearInterval(timerInterval);
+		startTimerButton.className = "fa fa-play fa-lg";
 	}
-}
 
-var stopTimerButton = document.getElementById("stopTimerButton");
-stopTimerButton.onclick = function(){
-	if (breakTimerInterval == false){
-		clearInterval(timerInterval);	
+	else if (timerInterval == false && startTimerButton.className == "fa fa-play fa-lg"){
+		breakTimer();
+		startTimerButton.className = "fa fa-pause fa-lg";
 	}
-	else { 
+
+	else if (timerInterval == false && startTimerButton.className == "fa fa-pause fa-lg"){
 		clearInterval(breakTimerInterval);
+		startTimerButton.className = "fa fa-play fa-lg";
 	}
 }
