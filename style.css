@@ -5,20 +5,17 @@ h1 {
 }
 
 .timerBox {
-	padding-top: 15%;
+	padding-top: 18%;
 }
 
 .jumbotron {
 	background: linear-gradient(rgba(255,0,0,1), rgba(255,0,0,0));
+	/*background: none;*/
 }
 
 .fa:hover {
 	cursor: pointer;
 	color: #5b5b5b;
-}
-
-#startTimerButton {
-	padding-bottom: 150px;
 }
 
 .btn {
