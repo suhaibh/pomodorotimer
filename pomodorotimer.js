@@ -26,7 +26,8 @@ var decreaseTimerButton = document.getElementById("decreaseTimerButton");
 decreaseTimerButton.onclick = decreaseTimer;
 
 function startTimer(){
-	breakTimerInterval = false;
+	timerIntervalOn = true;
+	breakTimerOn = false;
 	if (startTimeSeconds <= 0){
 		if (startTimeMinutes <= 0){
 			startTimeMinutes = 5;
@@ -49,17 +50,19 @@ function startTimer(){
 	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
 
-breakTimerInterval = false;
+breakTimerOn = false;
 function breakTimer(){
 	breakTimerInterval = setInterval(startBreakTimer, 1000);
+
 }
 
 function startBreakTimer(){
-	timerInterval = false;
+	breakTimerOn = true;
+	timerIntervalOn = false;
 	if (startTimeSeconds <= 0){
 		if (startTimeMinutes <= 0){
 			startTimeMinutes = 25;
-			startTimer();
+			startWorkTimer();
 			clearInterval(breakTimerInterval);
 		}
 		else {
@@ -68,10 +71,13 @@ function startBreakTimer(){
 		}
 	}
 	else {
-		if (startTimeSeconds < 10){
+		if (startTimeSeconds <= 10){
+			startTimeSeconds--;
 			startTimeSeconds = "0" + startTimeSeconds;
 		}
-		startTimeSeconds--;
+		else{
+			startTimeSeconds--;
+		}
 	}
 	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
 }
@@ -86,21 +92,21 @@ function startWorkTimer(){
 
 var startTimerButton = document.getElementById("startTimerButton");
 startTimerButton.onclick = function(){
-	if (breakTimerInterval == false && startTimerButton.className == "fa fa-play fa-lg"){
+	if (breakTimerOn == false && startTimerButton.className == "fa fa-play fa-lg"){
 		startWorkTimer();
 		startTimerButton.className = "fa fa-pause fa-lg"
 	}
-	else if (breakTimerInterval == false && startTimerButton.className == "fa fa-pause fa-lg"){
+	else if (breakTimerOn == false && startTimerButton.className == "fa fa-pause fa-lg"){
 		clearInterval(timerInterval);
 		startTimerButton.className = "fa fa-play fa-lg";
 	}
 
-	else if (timerInterval == false && startTimerButton.className == "fa fa-play fa-lg"){
+	else if (timerIntervalOn == false && startTimerButton.className == "fa fa-play fa-lg"){
 		breakTimer();
 		startTimerButton.className = "fa fa-pause fa-lg";
 	}
 
-	else if (timerInterval == false && startTimerButton.className == "fa fa-pause fa-lg"){
+	else if (timerIntervalOn == false && startTimerButton.className == "fa fa-pause fa-lg"){
 		clearInterval(breakTimerInterval);
 		startTimerButton.className = "fa fa-play fa-lg";
 	}
