@@ -10,12 +10,26 @@ function setTimer(){
 function increaseTimer(){
 	startTimeMinutes++;
 	timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+	startTimerButton.className = "fa fa-play fa-lg";
+	if (timerIntervalOn) {
+		clearInterval(timerInterval);
+	}
+	else {
+		clearInterval(breakTimerInterval);
+	}
 }
 
 function decreaseTimer(){
 	if (startTimeMinutes > 0){
 		startTimeMinutes--;
-		timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;	
+		timerDisplay.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+		if (timerIntervalOn) {
+			clearInterval(timerInterval);
+		}
+		else {
+			clearInterval(breakTimerInterval)
+		}
+		startTimerButton.className = "fa fa-play fa-lg";
 	}
 }
 
