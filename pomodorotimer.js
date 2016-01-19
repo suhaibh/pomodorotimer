@@ -125,3 +125,18 @@ startTimerButton.onclick = function(){
 		startTimerButton.className = "fa fa-play fa-lg";
 	}
 }
+
+var resetTimerButton = document.getElementById("resetTimerButton");
+resetTimerButton.onclick = function(){
+	if (breakTimerOn == true){
+		clearInterval(breakTimerInterval);
+		startTimerButton.className = "fa fa-play fa-lg";
+	}
+	else {
+		clearInterval(timerInterval);
+		startTimerButton.className = "fa fa-play fa-lg";
+	}
+	startTimeMinutes = 25;
+	startTimeSeconds = "00";
+	timer.innerHTML = startTimeMinutes + ":" + startTimeSeconds;
+}
