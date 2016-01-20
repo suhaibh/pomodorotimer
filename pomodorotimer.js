@@ -1,4 +1,4 @@
-var startTimeMinutes = 1;
+var startTimeMinutes = 25;
 var startTimeSeconds = "00";
 window.onload = setTimer;
 
@@ -103,6 +103,7 @@ function startWorkTimer(){
 // create another setinterval for break timer called when start timer ends and then when breaktimer ends clear the interval and start the start timer
 
 // see if you can decrease the delay between pressing play and the start of the clock by nesting some if statements
+
 
 var startTimerButton = document.getElementById("startTimerButton");
 startTimerButton.onclick = function(){
